@@ -46,3 +46,21 @@ app.listen(8000,()=>{console.log("Server is running on port 8000")});
 // const myServer=http.createServer(app);
 
 // myServer.listen(8000,()=>{console.log("Server is running on port 8000")});
+
+//Basic routing
+//app.METHOD(PATH, HANDLER)
+//app is an instance of express
+//METHOD is an HTTP request method, in lowercase
+//PATH is a path on the server
+//HANDLER is the function executed when the route is matched
+
+//Version
+// 4.21.2
+//1st Part ->4 (Major changes)
+//2nd Part ->21 (Recommended bug fixes)
+//3rd Part ->2 (Minor Fixes)
+//Major Version ->4
+//Minor Version ->21
+//Patch Version ->2
+//^4.21.2 ->4.x.x (latest version of 4)
+//~4.21.2 ->4.21.x (latest version of 4.21)
