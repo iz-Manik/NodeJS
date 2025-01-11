@@ -11,3 +11,6 @@ module.exports ={
     addFun:sum,
     subFun:sub,
 };
+
+//exports.add=(a,b)=>a+b;
+//exports.sub=(a,b)=>a-b;
