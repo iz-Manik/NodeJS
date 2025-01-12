@@ -1,4 +1,5 @@
 const express=require('express');
+const fs=require('fs');
 const app=express();
 const Port=8000;
 const users=require('./MOCK_DATA.json');
@@ -7,6 +8,20 @@ const users=require('./MOCK_DATA.json');
 app.get('/api/users',(req,res)=>{
     return res.json(users);
 });
+//Middleware
+app.use(express.urlencoded({extended:false}));
+
+app.use((req,res,next)=>{
+    console.log("Middleware");
+    req.myData="Hello World";
+    next();
+});
+
+app.use((req,res,next)=>{
+    console.log(req.myData);
+    next();
+});
+
 
 app.get('/users',(req,res)=>{
     const html=`
@@ -19,6 +34,7 @@ app.get('/users',(req,res)=>{
 
 app.get('/api/users/:id',(req,res)=>{
     const id=Number(req.params.id);
+    res.setHeader('Content-Type','application/json');
     const user=users.find(user=>user.id===id);
     if(user){
         return res.json(user);
@@ -33,7 +49,12 @@ app.post('/api/users',(req,res)=>{
     }
     const newUser={id:users.length+1,first_name,last_name,email};
     users.push(newUser);
-    return res.status(201).json(newUser);
+    fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),err=>{
+        if(err){
+            return res.status(500).send("Could not write to file");
+        }
+        return res.status(201).json(newUser);
+    });
 });
 
 app.patch('/api/users/:id',(req,res)=>{
