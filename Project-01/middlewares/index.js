@@ -1,6 +1,13 @@
-function log(req, res, next) {
-  console.log("Middleware is working");
-  next();
+const fs = require("fs");
+
+function log(filename) {
+  return function (req, res, next) {
+    fs.appendFile(filename, `${req.method} ${req.url}\n`, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  };
 }
 
 module.exports = log;
