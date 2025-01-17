@@ -1,0 +1,22 @@
+Authentication in Node.js is a process used to verify the identity of users before granting them access 
+to resources or performing actions.
+
+Common Authentication Methods
+Session-Based Authentication:
+
+A session is created on the server and stored, often in memory or a database.
+The server assigns a session ID to the user and sends it as a cookie to the client.
+Each subsequent request from the client includes the session ID cookie, allowing the server to identify the user.
+Token-Based Authentication:
+
+The server generates a token (e.g., JWT) after verifying user credentials.
+The token is sent to the client, usually in an HTTP header (e.g., Authorization).
+The client includes the token with every request, allowing stateless authentication.
+OAuth:
+
+A third-party authorization protocol that allows users to authenticate through services like Google, Facebook, or GitHub.
+The server redirects the user to the third-party service for authentication and receives an access token upon successful login.
+API Key Authentication:
+
+The server issues a unique API key to the user, which must be included in requests for authentication.
+Common for API-only applications or public-facing APIs.
